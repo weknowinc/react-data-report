@@ -7,8 +7,10 @@ module.exports = class ReportPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      opening: null,
       header: [],
-      rows: []
+      rows: [],
+      closing: null,
     };
     
     this._setInitialState = this._setInitialState.bind(this);
@@ -16,21 +18,23 @@ module.exports = class ReportPage extends React.Component {
     this._parseRows       = this._parseRows.bind(this);
   }
 
-  _setInitialState(data) {
-    if (data.length > 0) {
+  _setInitialState(props) {
+    if (props.data.length > 0) {
       this.setState({
-        header: this._parseHeader(data),
-        rows: this._parseRows(data),
+        opening: props.opening,
+        header: this._parseHeader(props.data),
+        rows: this._parseRows(props.data),
+        closing: props.closing
       });
     }
   }
 
   componentDidMount() {
-    this._setInitialState(this.props.data);
+    this._setInitialState(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
-    this._setInitialState(nextProps.data);
+    this._setInitialState(nextProps);
   }
 
   _parseHeader(data) {
@@ -52,10 +56,12 @@ module.exports = class ReportPage extends React.Component {
   render() {
     return (
       <div className={'page ' + this.props.className}>
+        <div className="page__opening">{this.state.opening}</div>
         <div className="page__table">
           {this.state.header}
           {this.state.rows}
         </div>
+        <div className="page__closing">{this.state.closing}</div>
       </div>
     );
   }

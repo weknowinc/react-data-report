@@ -28,13 +28,15 @@ export default class Report extends React.Component {
     this.updatePageSize     = this.updatePageSize.bind(this);
   }
 
-  _setInitialState(data) {
-    if (data.length > 0) {
-      this.setState({pages: this._parseData(data)});
+  _setInitialState(props) {
+    if (props.data.length > 0) {
+      this.setState({
+        pages: this._parseData(props.data, props.opening, props.closing)
+      });
     }
   }
 
-  _parseData(data) {
+  _parseData(data, opening, closing) {
     const total = data.length;
     if (total == 0) return null;
 
@@ -45,7 +47,7 @@ export default class Report extends React.Component {
     let content = [];
     for (let pg = 0; pg < pages; pg++) {
       const slicedData = data.slice(pg * step, (pg * step) + step);
-      content.push((<ReportPage className={ className } key={'page_' + pg} data={slicedData} />));
+      content.push((<ReportPage className={ className } key={'page_' + pg} data={slicedData} opening={pg == 0 ? opening : null} closing={pg == pages - 1 ? closing : null} />));
     }
 
     return content;
@@ -59,11 +61,11 @@ export default class Report extends React.Component {
   }
 
   componentDidMount() {
-    this._setInitialState(this.props.data);
+    this._setInitialState(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
-    this._setInitialState(nextProps.data);
+    this._setInitialState(nextProps);
   }
 
   generateReport() {
