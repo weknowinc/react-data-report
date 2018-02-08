@@ -13831,7 +13831,7 @@ function(module, exports, __webpack_require__) {
             key: "render",
             value: function() {
                 var _this4 = this;
-                return console.log(this.state.opening), _react2.default.createElement("div", {
+                return _react2.default.createElement("div", {
                     className: "report"
                 }, _react2.default.createElement("div", {
                     className: "report__control-panel"
