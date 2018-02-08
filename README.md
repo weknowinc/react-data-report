@@ -15,6 +15,9 @@ To run the test:
 ```BASH
 cd test
 npm install
+cd node_modules
+ln -s ../../ react-data-report
+cd ..
 npm start
 ```
 
@@ -28,7 +31,7 @@ import Report from 'react-data-report';
 Then, in the render method we can just call it like:
 
 ```JAVASCRIPT
-<Report data={example}/>
+<Report data={example} opening={(<h1>This is an opening content.</h1>)}/>
 ```
 
 Where data is an array of objects as you can see in this [example](test/src/example.json) file.

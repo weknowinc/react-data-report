@@ -13727,14 +13727,14 @@ function(module, exports, __webpack_require__) {
         }
         return _inherits(Report, _React$Component), _createClass(Report, [ {
             key: "_setInitialState",
-            value: function(data) {
-                data.length > 0 && this.setState({
-                    pages: this._parseData(data)
+            value: function(props) {
+                this.setState({
+                    pages: this._parseData(props.data, props.opening, props.closing)
                 });
             }
         }, {
             key: "_parseData",
-            value: function(data) {
+            value: function(data, opening, closing) {
                 var total = data.length;
                 if (0 == total) return null;
                 for (var step = parseInt(this.state.itemsPerPage), pages = Math.floor(total / step) + (total % step == 0 ? 0 : 1), className = this.state.pageSize + " " + ("p" == this.state.pageFormat ? "portrait" : "landscape"), content = [], pg = 0; pg < pages; pg++) {
@@ -13742,7 +13742,9 @@ function(module, exports, __webpack_require__) {
                     content.push(_react2.default.createElement(_reportPage2.default, {
                         className: className,
                         key: "page_" + pg,
-                        data: slicedData
+                        data: slicedData,
+                        opening: 0 == pg ? opening : null,
+                        closing: pg == pages - 1 ? closing : null
                     }));
                 }
                 return content;
@@ -13753,19 +13755,19 @@ function(module, exports, __webpack_require__) {
                 var _this2 = this;
                 this.update && clearTimeout(this.update), this.update = setTimeout(function() {
                     _this2.setState({
-                        pages: _this2._parseData(_this2.props.data)
+                        pages: _this2._parseData(_this2.props.data, _this2.props.opening, _this2.props.closing)
                     });
                 }, 500);
             }
         }, {
             key: "componentDidMount",
             value: function() {
-                this._setInitialState(this.props.data);
+                this._setInitialState(this.props);
             }
         }, {
             key: "componentWillReceiveProps",
             value: function(nextProps) {
-                this._setInitialState(nextProps.data);
+                this._setInitialState(nextProps);
             }
         }, {
             key: "generateReport",
@@ -23084,28 +23086,32 @@ function(module, exports, __webpack_require__) {
             _classCallCheck(this, ReportPage);
             var _this = _possibleConstructorReturn(this, (ReportPage.__proto__ || Object.getPrototypeOf(ReportPage)).call(this, props));
             return _this.state = {
+                opening: null,
                 header: [],
-                rows: []
+                rows: [],
+                closing: null
             }, _this._setInitialState = _this._setInitialState.bind(_this), _this._parseHeader = _this._parseHeader.bind(_this), 
             _this._parseRows = _this._parseRows.bind(_this), _this;
         }
         return _inherits(ReportPage, _React$Component), _createClass(ReportPage, [ {
             key: "_setInitialState",
-            value: function(data) {
-                data.length > 0 && this.setState({
-                    header: this._parseHeader(data),
-                    rows: this._parseRows(data)
+            value: function(props) {
+                this.setState({
+                    opening: props.opening,
+                    header: this._parseHeader(props.data),
+                    rows: this._parseRows(props.data),
+                    closing: props.closing
                 });
             }
         }, {
             key: "componentDidMount",
             value: function() {
-                this._setInitialState(this.props.data);
+                this._setInitialState(this.props);
             }
         }, {
             key: "componentWillReceiveProps",
             value: function(nextProps) {
-                this._setInitialState(nextProps.data);
+                this._setInitialState(nextProps);
             }
         }, {
             key: "_parseHeader",
@@ -23132,8 +23138,12 @@ function(module, exports, __webpack_require__) {
                 return _react2.default.createElement("div", {
                     className: "page " + this.props.className
                 }, _react2.default.createElement("div", {
+                    className: "page__opening"
+                }, this.state.opening), _react2.default.createElement("div", {
                     className: "page__table"
-                }, this.state.header, this.state.rows));
+                }, this.state.header, this.state.rows), _react2.default.createElement("div", {
+                    className: "page__closing"
+                }, this.state.closing));
             }
         } ]), ReportPage;
     }(_react2.default.Component);
