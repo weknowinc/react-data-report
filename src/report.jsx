@@ -54,7 +54,7 @@ export default class Report extends React.Component {
   _updatePreview() {
     if (this.update) clearTimeout(this.update);
     this.update = setTimeout(() => {
-      this.setState({pages: this._parseData(this.props.data)});
+      this.setState({pages: this._parseData(this.props.data, this.props.opening, this.props.closing)});
     }, 500);
   }
 
