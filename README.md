@@ -40,5 +40,5 @@ Where data is an array of objects as you can see in this [example](test/src/exam
 
 Install this component is easy, just use npm as:
 ```BASH
-npm install react-data-report
+npm install @weknow/react-data-report
 ```
