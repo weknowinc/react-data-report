@@ -13728,7 +13728,7 @@ function(module, exports, __webpack_require__) {
         return _inherits(Report, _React$Component), _createClass(Report, [ {
             key: "_setInitialState",
             value: function(props) {
-                props.data.length > 0 && this.setState({
+                this.setState({
                     pages: this._parseData(props.data, props.opening, props.closing)
                 });
             }
@@ -23096,7 +23096,7 @@ function(module, exports, __webpack_require__) {
         return _inherits(ReportPage, _React$Component), _createClass(ReportPage, [ {
             key: "_setInitialState",
             value: function(props) {
-                props.data.length > 0 && this.setState({
+                this.setState({
                     opening: props.opening,
                     header: this._parseHeader(props.data),
                     rows: this._parseRows(props.data),
