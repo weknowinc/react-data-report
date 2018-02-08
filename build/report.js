@@ -13755,7 +13755,7 @@ function(module, exports, __webpack_require__) {
                 var _this2 = this;
                 this.update && clearTimeout(this.update), this.update = setTimeout(function() {
                     _this2.setState({
-                        pages: _this2._parseData(_this2.props.data)
+                        pages: _this2._parseData(_this2.props.data, _this2.props.opening, _this2.props.closing)
                     });
                 }, 500);
             }
