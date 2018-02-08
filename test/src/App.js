@@ -16,7 +16,7 @@ class App extends Component {
         </header>
         <h1 className="App-intro">Example of 'react-data-report' Component.</h1>
         <br />
-        <Report data={example}/>
+        <Report data={example} opening={(<h1>This is an opening content.</h1>)} closing={(<h1>This is a closing content.</h1>)}/>
       </div>
     );
   }
