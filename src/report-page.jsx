@@ -19,14 +19,12 @@ module.exports = class ReportPage extends React.Component {
   }
 
   _setInitialState(props) {
-    if (props.data.length > 0) {
-      this.setState({
-        opening: props.opening,
-        header: this._parseHeader(props.data),
-        rows: this._parseRows(props.data),
-        closing: props.closing
-      });
-    }
+    this.setState({
+      opening: props.opening,
+      header: this._parseHeader(props.data),
+      rows: this._parseRows(props.data),
+      closing: props.closing
+    });
   }
 
   componentDidMount() {

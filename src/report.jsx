@@ -29,11 +29,9 @@ export default class Report extends React.Component {
   }
 
   _setInitialState(props) {
-    if (props.data.length > 0) {
-      this.setState({
-        pages: this._parseData(props.data, props.opening, props.closing)
-      });
-    }
+    this.setState({
+      pages: this._parseData(props.data, props.opening, props.closing)
+    });
   }
 
   _parseData(data, opening, closing) {
