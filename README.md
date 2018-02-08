@@ -15,6 +15,9 @@ To run the test:
 ```BASH
 cd test
 npm install
+cd node_modules
+ln -s ../../ react-data-report
+cd ..
 npm start
 ```
 
