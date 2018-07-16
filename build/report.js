@@ -14098,7 +14098,7 @@ function(module, exports, __webpack_require__) {
                     pages: this._parseData(props.data, props.opening, props.closing),
                     itemsPerPage: this.props.itemsPerPage || 8,
                     pageFormat: this.props.pageFormat || "p",
-                    pageSize: this.prop.pageSize || "letter"
+                    pageSize: this.props.pageSize || "letter"
                 });
             }
         }, {
